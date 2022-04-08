@@ -7,7 +7,7 @@ import { Section } from "../components/section";
 import { staticRequest } from "tinacms";
 
 export default function HomePage(
-  props: AsyncReturnType<typeof getStaticProps>["props"]
+  props: AsyncReturnType<typeof getServerSideProps>["props"]
 ) {
   const posts = props.data.getPostsList.edges;
   const pageInfo = props.data.getPostsList.pageInfo;
