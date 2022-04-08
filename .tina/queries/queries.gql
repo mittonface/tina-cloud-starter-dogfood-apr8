@@ -47,3 +47,34 @@ query BlogPostQuery($relativePath: String!) {
     }
   }
 }
+
+query GetPostsPage($after: String) {
+  getPostsList(first: 10, after: $after) {
+    edges {
+      node {
+        id
+        sys {
+          filename
+        }
+        data {
+          title
+          excerpt
+          date
+          _body
+          author {
+            ... on AuthorsDocument {
+              data {
+                name
+                avatar
+              }
+            }
+          }
+        }
+      }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

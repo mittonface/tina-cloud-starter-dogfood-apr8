@@ -1,8 +1,9 @@
 import { Container } from "../components/container";
-import { Section } from "../components/section";
-import { Posts } from "../components/posts";
 import { ExperimentalGetTinaClient } from "../.tina/__generated__/types";
 import { Layout } from "../components/layout";
+import { Posts } from "../components/posts";
+import { Section } from "../components/section";
+import { staticRequest } from "tinacms";
 
 export default function HomePage(
   props: AsyncReturnType<typeof getStaticProps>["props"]
@@ -22,7 +23,9 @@ export default function HomePage(
 
 export const getStaticProps = async () => {
   const client = ExperimentalGetTinaClient();
-  const tinaProps = await client.PageQuery();
+  const tinaProps = await client.GetPostsPage();
+
+  console.log(tinaProps);
   return {
     props: {
       ...tinaProps,

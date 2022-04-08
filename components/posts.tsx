@@ -1,8 +1,8 @@
-import React from "react";
-import Link from "next/link";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { BsArrowRight } from "react-icons/bs";
+import Link from "next/link";
+import React from "react";
 import { ThemeContext } from "./theme";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
 
 export const Posts = ({ data }) => {
   const theme = React.useContext(ThemeContext);
@@ -21,6 +21,7 @@ export const Posts = ({ data }) => {
     <>
       {data.map((postData) => {
         const post = postData.node;
+        console.log(post);
         return (
           <Link
             key={post.sys.filename}
@@ -36,13 +37,13 @@ export const Posts = ({ data }) => {
                   titleColorClasses[theme.color]
                 }`}
               >
-                {post.values.title}{" "}
+                {post.data.title}{" "}
                 <span className="inline-block opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out">
                   <BsArrowRight className="inline-block h-8 -mt-1 ml-1 w-auto opacity-70" />
                 </span>
               </h3>
               <div className="prose dark:prose-dark prose-lg w-full max-w-none mb-5">
-                <TinaMarkdown content={post.values.excerpt} />
+                <TinaMarkdown content={post.data.excerpt} />
               </div>
               <div className="flex items-center -mb-2">
                 <div className="flex-shrink-0 mr-2">
@@ -59,7 +60,7 @@ export const Posts = ({ data }) => {
                   —
                 </span>
                 <p className="text-sm text-gray-400 group-hover:text-gray-500 dark:text-gray-300 dark:group-hover:text-gray-150">
-                  {post.values.date}
+                  {post.data.date}
                 </p>
               </div>
             </a>
