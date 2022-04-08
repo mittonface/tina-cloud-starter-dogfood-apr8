@@ -105,6 +105,7 @@ export type QueryGetDocumentListArgs = {
   after?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
   filter?: InputMaybe<DocumentFilter>;
 };
 
@@ -119,6 +120,7 @@ export type QueryGetPostsListArgs = {
   after?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
   filter?: InputMaybe<PostsFilter>;
 };
 
@@ -133,6 +135,7 @@ export type QueryGetGlobalListArgs = {
   after?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
   filter?: InputMaybe<GlobalFilter>;
 };
 
@@ -147,6 +150,7 @@ export type QueryGetAuthorsListArgs = {
   after?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
   filter?: InputMaybe<AuthorsFilter>;
 };
 
@@ -161,6 +165,7 @@ export type QueryGetPagesListArgs = {
   after?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
   filter?: InputMaybe<PagesFilter>;
 };
 
@@ -168,12 +173,14 @@ export type StringFilter = {
   startsWith?: InputMaybe<Scalars['String']>;
   eq?: InputMaybe<Scalars['String']>;
   exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type ImageFilter = {
   startsWith?: InputMaybe<Scalars['String']>;
   eq?: InputMaybe<Scalars['String']>;
   exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type RichTextFilter = {
@@ -196,6 +203,7 @@ export type DatetimeFilter = {
   before?: InputMaybe<Scalars['String']>;
   eq?: InputMaybe<Scalars['String']>;
   exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type Posts_BodyDateTimeFilter = {
@@ -375,6 +383,7 @@ export type CollectionDocumentsArgs = {
   after?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
   filter?: InputMaybe<DocumentFilter>;
 };
 
@@ -1066,7 +1075,7 @@ export const BlogPostQueryDocument = gql`
 ${PostsPartsFragmentDoc}`;
 export const GetPostsPageDocument = gql`
     query GetPostsPage($after: String) {
-  getPostsList(first: 10, after: $after) {
+  getPostsList(first: 10, after: $after, sort: "date") {
     edges {
       node {
         id
