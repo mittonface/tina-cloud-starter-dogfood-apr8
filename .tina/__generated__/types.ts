@@ -1075,7 +1075,7 @@ export const BlogPostQueryDocument = gql`
 ${PostsPartsFragmentDoc}`;
 export const GetPostsPageDocument = gql`
     query GetPostsPage($after: String) {
-  getPostsList(first: 10, after: $after, sort: "date") {
+  getPostsList(first: 5, after: $after, sort: "date") {
     edges {
       node {
         id

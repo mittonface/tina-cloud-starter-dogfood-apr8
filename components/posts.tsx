@@ -4,7 +4,7 @@ import React from "react";
 import { ThemeContext } from "./theme";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 
-export const Posts = ({ data }) => {
+export const Posts = ({ data, pageInfo }) => {
   const theme = React.useContext(ThemeContext);
   const titleColorClasses = {
     blue: "group-hover:text-blue-600 dark:group-hover:text-blue-300",
@@ -21,7 +21,6 @@ export const Posts = ({ data }) => {
     <>
       {data.map((postData) => {
         const post = postData.node;
-        console.log(post);
         return (
           <Link
             key={post.sys.filename}
